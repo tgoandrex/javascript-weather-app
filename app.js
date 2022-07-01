@@ -1,3 +1,7 @@
+import { CurrentWeather } from "./src/app/currentWeather";
+import { Forecast } from "./src/app/forecast";
+
 export const run = () => {
-    // Do something
+    CurrentWeather.getCurrentWeather();
+    Forecast.getForecast();
 }
