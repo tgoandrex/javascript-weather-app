@@ -1,6 +1,5 @@
 export class Forecast {
-    constructor(name, forecasts) {
-        this.name = name;
+    constructor(forecasts) {
         this.forecasts = forecasts;
     }
 
@@ -14,23 +13,22 @@ export class Forecast {
             return datesFormatted.push(String(new Date(date * 1000.)).slice(0,21));
         });
 
-        const name = data.city.name,
-            forecasts = [
+        const forecasts = [
                 [datesFormatted[0], Math.round(data.list[0].main.temp), 
-                Math.round(data.list[0].main.feels_like), data.list[0].weather[0].icon],
+                Math.round(data.list[0].main.feels_like), `http://openweathermap.org/img/wn/${data.list[0].weather[0].icon}.png`],
                 [datesFormatted[1], Math.round(data.list[4].main.temp), 
-                Math.round(data.list[4].main.feels_like), data.list[4].weather[0].icon],
+                Math.round(data.list[4].main.feels_like), `http://openweathermap.org/img/wn/${data.list[4].weather[0].icon}.png`],
                 [datesFormatted[2], Math.round(data.list[8].main.temp), 
-                Math.round(data.list[8].main.feels_like), data.list[8].weather[0].icon],
+                Math.round(data.list[8].main.feels_like), `http://openweathermap.org/img/wn/${data.list[8].weather[0].icon}.png`],
                 [datesFormatted[3], Math.round(data.list[12].main.temp), 
-                Math.round(data.list[12].main.feels_like), data.list[12].weather[0].icon],
+                Math.round(data.list[12].main.feels_like), `http://openweathermap.org/img/wn/${data.list[12].weather[0].icon}.png`],
                 [datesFormatted[4], Math.round(data.list[16].main.temp), 
-                Math.round(data.list[16].main.feels_like), data.list[16].weather[0].icon],
+                Math.round(data.list[16].main.feels_like), `http://openweathermap.org/img/wn/${data.list[16].weather[0].icon}.png`],
                 [datesFormatted[5], Math.round(data.list[20].main.temp), 
-                Math.round(data.list[20].main.feels_like), data.list[20].weather[0].icon],
+                Math.round(data.list[20].main.feels_like), `http://openweathermap.org/img/wn/${data.list[20].weather[0].icon}.png`],
                 [datesFormatted[6], Math.round(data.list[24].main.temp), 
-                Math.round(data.list[24].main.feels_like), data.list[24].weather[0].icon],
+                Math.round(data.list[24].main.feels_like), `http://openweathermap.org/img/wn/${data.list[24].weather[0].icon}.png`],
             ]
-        return new Forecast(name, forecasts);
+        return new Forecast(forecasts);
     }
 }

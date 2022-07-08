@@ -7,12 +7,13 @@
     <title>Weather Application</title>
     </head>
     <body>
+        <header>
+            <form id="form">
+                <label for="title">Search:</label>
+                <input type="text" id="city" name="city" placeholder="City name" required>
+                <input class="submit" type="submit" value="Get Weather">
+            </form>
+        </header>
         <div id="content"></div>
-        <form id="form">
-            <h3>Search by City</h3>
-            <label for="title">City Name</label><br />
-            <input type="text" id="city" name="city" required><br />
-            <input class="submit" type="submit" value="Get Weather">
-        </form>
     </body>
 </html>
