@@ -5,43 +5,77 @@ import { Forecast } from './forecast';
 import axios from 'axios';
 
 export class DOM {
+    static generateBackground = () => {
+        const body = document.getElementById('body');
+        if(new Date().getHours() < 8 || new Date().getHours() > 18) {
+            body.className = 'background-night';
+        } else {
+            body.className = 'background-day';
+        }
+    }
+
     static displayCurrentWeather = (city) => {
         axios.get(`${BASE_URL_CURRENT_WEATHER}?q=${city}&appid=${API_KEY}&units=imperial`)
         .then(function(res) {
             const weatherObj = CurrentWeather.createCurrentWeather(res.data);
 
+            const currentWeatherDiv = document.createElement('div');
+            currentWeatherDiv.id = 'current-weather';
+            content.appendChild(currentWeatherDiv);
+
+            const currentTime = document.createElement('div');
+            currentTime.id = 'current-time';
+            currentTime.textContent = String(new Date(Date.now())).slice(0,21);
+            currentWeatherDiv.appendChild(currentTime);
+            
             const city = document.createElement('div');
+            city.id = 'city-name';
             city.textContent = weatherObj.name;
-            content.appendChild(city);
+            currentWeatherDiv.appendChild(city);
 
             const icon = document.createElement('img');
+            icon.id = 'icon';
             icon.src = `http://openweathermap.org/img/wn/${weatherObj.icon}.png`;
             icon.alt = 'weather icon';
-            content.appendChild(icon);
+            currentWeatherDiv.appendChild(icon);
 
             const main = document.createElement('div');
+            main.id = 'main';
             main.textContent = weatherObj.main;
-            content.appendChild(main);
+            currentWeatherDiv.appendChild(main);
 
-            const temperature = document.createElement('div');
+            const temperatureWrapper = document.createElement('div');
+            temperatureWrapper.className = 'temperature-wrapper';
+            currentWeatherDiv.appendChild(temperatureWrapper);
+
+            const temperature = document.createElement('span');
+            temperature.id = 'temperature';
             temperature.textContent = `${weatherObj.temperature} F\u00B0`;
-            content.appendChild(temperature);
+            temperatureWrapper.appendChild(temperature);
 
-            const feelsLike = document.createElement('div');
+            const feelsLike = document.createElement('span');
+            feelsLike.id = 'feels-like';
             feelsLike.textContent = `Feels like ${weatherObj.feelsLike} F\u00B0`;
-            content.appendChild(feelsLike);
+            temperatureWrapper.appendChild(feelsLike);
+
+            const miscWrapper = document.createElement('div');
+            miscWrapper.className = 'misc-wrapper';
+            currentWeatherDiv.appendChild(miscWrapper);
 
             const humidity = document.createElement('div');
+            humidity.id = 'humidity';
             humidity.textContent = `Humidity ${weatherObj.humidity}%`;
-            content.appendChild(humidity);
+            miscWrapper.appendChild(humidity);
 
             const windSpeed = document.createElement('div');
+            windSpeed.id = 'wind-speed';
             windSpeed.textContent = `Wind ${weatherObj.windSpeed} MPH`;
-            content.appendChild(windSpeed);
+            miscWrapper.appendChild(windSpeed);
 
             const cloudPercent = document.createElement('div');
+            cloudPercent.id = 'cloud-percent';
             cloudPercent.textContent = `Clouds ${weatherObj.cloudPercent}%`;
-            content.appendChild(cloudPercent);
+            miscWrapper.appendChild(cloudPercent);
         })
         .catch(err => {console.log(`error current weather: ${err}`)})
     }
@@ -51,21 +85,33 @@ export class DOM {
         .then(res => {
             const weatherObj = Forecast.createForecasts(res.data);
 
+            const forecastDiv = document.createElement('div');
+            forecastDiv.id = 'forecast';
+            content.appendChild(forecastDiv);
+
             for(let value in weatherObj.forecasts) {
-                for(let subvalue in weatherObj.forecasts[value]) {
-                    if(weatherObj.forecasts[value][subvalue] === weatherObj.forecasts[value][3]) {
-                        const img = document.createElement('img');
-                        img.src = weatherObj.forecasts[value][subvalue];
-                        img.alt = 'weather icon';
-                        content.appendChild(img);
-                    } else {
-                        const div = document.createElement('div');
-                        div.textContent = `${weatherObj.forecasts[value][subvalue]}`
-                        content.appendChild(div);
-                    }
-                }
+                const forecastBox = document.createElement('div');
+                forecastBox.className = 'forecast-item';
+                forecastDiv.appendChild(forecastBox);
+
+                const date = document.createElement('div');
+                date.textContent = weatherObj.forecasts[value][0];
+                forecastBox.appendChild(date);
+
+                const icon = document.createElement('img');
+                icon.src = weatherObj.forecasts[value][3];
+                icon.alt = 'forecast icon';
+                forecastBox.appendChild(icon);
+
+                const main = document.createElement('div');
+                main.textContent = `${weatherObj.forecasts[value][1]} F\u00B0`;
+                forecastBox.appendChild(main);
+
+                const feelsLike = document.createElement('div');
+                feelsLike.textContent = `Feels like ${weatherObj.forecasts[value][2]} F\u00B0`;
+                forecastBox.appendChild(feelsLike);
             }
         })
-        .catch(err => {console.log(`error 5 day: ${err}`)})
+        .catch(err => {console.log(`error forecast: ${err}`)})
     }
 }

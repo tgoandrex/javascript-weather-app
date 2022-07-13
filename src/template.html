@@ -5,13 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Weather Application</title>
+    <script src="https://kit.fontawesome.com/a538d6fa29.js" crossorigin="anonymous"></script>
     </head>
-    <body>
+    <body id="body">
         <header>
             <form id="form">
-                <label for="title">Search:</label>
+                <button id="submit">
+                    <i class="fas fa-search"></i>
+                </button>
                 <input type="text" id="city" name="city" placeholder="City name" required>
-                <input class="submit" type="submit" value="Get Weather">
             </form>
         </header>
         <div id="content"></div>

@@ -1,0 +1,92 @@
+#body {
+    margin: 0;
+    text-align: center;
+}
+
+header {
+    height: 5vh;
+}
+
+#form {
+    padding-top: 8px;
+}
+
+input {
+    border-radius: 25px;
+    height: 2em;
+}
+
+.background-day {
+    background-image: url('./app/utils/assets/background-day.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.background-night {
+    background-image: url('./app/utils/assets/background-night.avif');
+    background-size: cover;
+    color: #fff;
+}
+
+#current-weather {
+    height: 65vh;
+}
+
+#forecast {
+    height: 30vh;
+    display: flex;
+    justify-content: space-between;
+    overflow: auto;
+}
+
+#submit {
+    background: rgba(0, 0, 0, 0);
+    border: none;
+}
+
+#current-time {
+    padding-top: 15%;
+}
+
+#current-time, #city-name {
+    font-size: 2em;
+}
+
+#icon {
+
+}
+
+#main {
+    font-size: 1.25em;
+}
+
+.temperature-wrapper, .misc-wrapper {
+    display: flex;
+}
+
+#temperature, #feels-like, #humidity, #wind-speed, #cloud-percent  {
+    flex: 1;
+    font-size: 1.25em;
+}
+.forecast-item {
+    flex: 1;
+    margin: 0 5px;
+}
+
+@media screen and (orientation:landscape) {
+    header {
+        height: 10vh;
+    }
+    
+    #current-weather {
+        height: 60vh;
+    }
+    
+    #forecast {
+        height: 30vh;
+    }
+
+    #current-time {
+        padding-top: 2%;
+    }
+}

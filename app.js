@@ -13,4 +13,5 @@ document.getElementById('form').addEventListener('submit', function(e) {
 });
 
 export const run = () => {
+    DOM.generateBackground();
 }
