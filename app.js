@@ -1,9 +1,10 @@
 import { DOM } from './src/app/dom';
 import { removeAllChildNodes } from './src/app/utils/functions';
-import { content } from './src/app/utils/domElement';
 
 document.getElementById('form').addEventListener('submit', function(e) {
     e.preventDefault();
+
+    const content = document.getElementById('content');
     removeAllChildNodes(content);
 
     const cityName = document.getElementById('city').value;

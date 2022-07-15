@@ -52,10 +52,6 @@ input {
     font-size: 2em;
 }
 
-#icon {
-
-}
-
 #main {
     font-size: 1.25em;
 }
@@ -71,6 +67,11 @@ input {
 .forecast-item {
     flex: 1;
     margin: 0 5px;
+}
+
+#error {
+    margin-top: 50px;
+    font-size: 1.25em;
 }
 
 @media screen and (orientation:landscape) {
