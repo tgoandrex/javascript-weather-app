@@ -127,6 +127,6 @@ export class DOM {
                 forecastBox.appendChild(feelsLike);
             }
         })
-        .catch(err => {console.log(`error forecast: ${err}`)})
+        .catch(err => {console.log(`error forecast: ${err.message}`)})
     }
 }
