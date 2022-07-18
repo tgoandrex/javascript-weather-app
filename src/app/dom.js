@@ -97,6 +97,8 @@ export class DOM {
         const BASE_URL_FIVE_DAY_FORECAST = 'https://api.openweathermap.org/data/2.5/forecast';
         const apiKey = process.env.API_KEY;
 
+        console.log(apiKey)
+
         axios.get(`${BASE_URL_FIVE_DAY_FORECAST}?q=${city}&appid=${apiKey}&units=imperial`)
         .then(res => {
             const weatherObj = Forecast.createForecasts(res.data);
