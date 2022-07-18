@@ -15,7 +15,7 @@ export class DOM {
     static displayCurrentWeather = (city) => {
         const BASE_URL_CURRENT_WEATHER = 'https://api.openweathermap.org/data/2.5/weather';
 
-        axios.get(`${BASE_URL_CURRENT_WEATHER}?q=${city}&appid=${process.env.API_KEY}&units=imperial`)
+        axios.get(`${BASE_URL_CURRENT_WEATHER}?q=${city}&appid=${process.env.GATSBY_API_KEY}&units=imperial`)
         .then(function(res) {
             if (res.status === 200) {
                 const weatherObj = CurrentWeather.createCurrentWeather(res.data);
@@ -95,7 +95,7 @@ export class DOM {
     static displayFiveDayForecast = (city) => {
         const BASE_URL_FIVE_DAY_FORECAST = 'https://api.openweathermap.org/data/2.5/forecast';
 
-        axios.get(`${BASE_URL_FIVE_DAY_FORECAST}?q=${city}&appid=${process.env.API_KEY}&units=imperial`)
+        axios.get(`${BASE_URL_FIVE_DAY_FORECAST}?q=${city}&appid=${process.env.GATSBY_API_KEY}&units=imperial`)
         .then(res => {
             const weatherObj = Forecast.createForecasts(res.data);
             const content = document.getElementById('content');
